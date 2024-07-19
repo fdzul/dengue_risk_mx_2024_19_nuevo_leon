@@ -6,6 +6,9 @@ loc <- rgeomex::extract_locality(cve_edo = "19",
                                               "San Pedro Garza García", "Ciudad Benito Juárez",
                                               "San Nicolás de los Garza"))
 
+loc <- rgeomex::extract_locality(cve_edo = "19",
+                                 locality = "Ciudad Sabinas Hidalgo")
+
 # Step 2. Extract the hotspots ####
 hotspots <- denmex::den_hotspots[loc, ]
 mapview::mapview(hotspots,
@@ -23,27 +26,16 @@ library(sf)
 
 # Step 3. 
 deneggs::map_eggs_hotspots(betas = denmex::eggs_betas_19_nuevo_leon,
-                           locality = c("Ciudad General Escobedo", "Ciudad Apodaca",
-                                        "Guadalupe", "Monterrey", "Ciudad Santa Catarina",
-                                        "San Pedro Garza García", "Ciudad Benito Juárez",
-                                        "San Nicolás de los Garza", "Montebello"),
+                           locality = "Santiago",
                            cve_edo = "19",
                            palette = rcartocolor::carto_pal,
                            name = "SunsetDark",
                            static_map = FALSE)
 
-
-
 denhotspots::risk_ageb(betas = denmex::eggs_betas_19_nuevo_leon,
                        hotspots = denmex::den_hotspots,
                        intensity_perc = 25,
-                       locality = c("Ciudad General Escobedo", 
-                                    "Ciudad Apodaca",
-                                    "Guadalupe", "Monterrey", 
-                                    "Ciudad Santa Catarina",
-                                    "San Pedro Garza García",
-                                    "Ciudad Benito Juárez",
-                                    "San Nicolás de los Garza"),
+                       locality = "Ciudad Sabinas Hidalgo",
                        cve_edo = "19") |>
     denhotspots::map_risk(staticmap = FALSE)
 
